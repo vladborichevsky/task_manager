@@ -1,0 +1,17 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  color: var(--main-color);
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background: var(--main-background-color);
+  color: var(--white-color);
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
