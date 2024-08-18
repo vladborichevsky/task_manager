@@ -26,11 +26,9 @@
 
   onMounted( () => {
     // проверяем, что если в localStorage есть объект objOfTasks, то данные из него помещаем в наш VueX
-    if(localStorage.getItem('objOfTasks') != null) {
-      if(Object.entries(JSON.parse(localStorage.getItem('objOfTasks'))).length > 0) {
+      if(localStorage.getItem('objOfTasks') != null && Object.entries(JSON.parse(localStorage.getItem('objOfTasks'))).length > 0) {
         store.commit('setValuesFromLocalStorage', JSON.parse(localStorage.getItem('objOfTasks')))
       }
-    }
 
     // запускаем функцию, которая проверяет таски в каждом дне недели, и если срок выполнения какой-то таски прошёл, добавляет её в outstandingTasks 
     store.dispatch('updateObjOfTasks')
