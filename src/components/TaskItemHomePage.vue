@@ -127,7 +127,7 @@
   };
 
   function enterDroppable(elem) {
-    elem.style.background = 'var(--light-black-color)'
+    elem.style.background = '#1b1919'
   }
 
   function leaveDroppable(elem) {
@@ -135,18 +135,18 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .task_item {
     width: 140px;
     cursor: pointer;
-    background-color: var(--gray-color);
+    background-color: $gray-color;
     padding: 15px 7px;
-    border-radius: var(--border-radius);
-    border: 1px solid var(--gray-color);
+    border-radius: $border-radius;
+    border: 1px solid $gray-color;
     margin: 5px 0;
   }
 
   .task_item:hover {
-    border: 1px solid var(--blue-color);
+    border: 1px solid $blue-color;
   }
 </style>

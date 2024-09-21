@@ -1,12 +1,12 @@
 <template>
-  <div class="outstanding_tasks__item">
+  <div class="item_from_the_task_list">
     <div 
-      @click="$router.push(`/task/outstandingTasks_${props.id + 1}`)"
-      class="outstanding_tasks__item_name">
+      @click="click()"
+      class="item_from_the_task_list_name">
         {{ taskName }}
     </div>
     
-    <div class="outstanding_tasks__item_date">
+    <div class="item_from_the_task_list_date">
       {{ task[2] }}
     </div>
   </div>
@@ -18,7 +18,9 @@
   const props = defineProps({ 
     task: Array,
     id: Number
-  })   
+  })  
+  
+  const emit = defineEmits(['click'])
 
   const taskName = computed( ()=> {
     if(props.task[0].length > 45) {
@@ -27,34 +29,38 @@
       return props.task[0]
     }
   }) 
+
+  const click = () => {
+    emit('click') 
+  }
 </script>
 
-<style scoped>
-  .outstanding_tasks__item {
+<style lang="scss" scoped>
+  .item_from_the_task_list {
     width: 650px;
     margin: 5px 0;
     display: flex;
     justify-content: space-between;
   }
 
-  .outstanding_tasks__item_name {
+  .item_from_the_task_list_name {
     cursor: pointer;
     width: 550px;
-    background-color: var(--gray-color);
-    border-radius: var(--border-radius);
-    border: 1px solid var(--gray-color);
+    background-color: $gray-color;
+    border-radius: $border-radius;
+    border: 1px solid $gray-color;
     font-size: 22px;
     padding: 10px 15px;
   }
 
-  .outstanding_tasks__item_name:hover {
-    border: 1px solid var(--blue-color);
+  .item_from_the_task_list_name:hover {
+    border: 1px solid $blue-color;
   }
 
-  .outstanding_tasks__item_date {
+  .item_from_the_task_list_date {
     padding: 10px 15px;
     font-size: 22px;
     font-weight: 600;
-    color: var(--blue-color);
+    color: $blue-color;
   }
 </style>

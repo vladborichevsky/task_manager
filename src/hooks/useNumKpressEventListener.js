@@ -1,6 +1,7 @@
 
 // слушатель событий нажатия клавиш 1-7
-export const numberKeypressEventListener = function (theDay, Swal, addNewTask) {
+
+export const useNumKpressEventListener = function (theDay, Swal, addNewTask) {
   document.querySelector('body').addEventListener('keyup', (event) => {
     if(event.code === "Digit1" && theDay === 'monday') {
       if(!Swal.isVisible()) addNewTask()

@@ -1,0 +1,36 @@
+
+@mixin upcoming_and_outstanding_tasks__header {
+  text-align: center;
+  color: $gray-color;
+  margin-bottom: 25px;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+@mixin upcoming_and_outstanding_tasks__block {
+  width: 750px;
+  height: 450px;
+  background-color: $black-color;
+  border-radius: $border-radius;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+@mixin upcoming_and_outstanding_tasks__wrapper {
+  overflow-y: auto;
+  height: 440px;
+}
+
+@mixin upcoming_and_outstanding_tasks__wrapper_webkit_scrollbar {
+  width: 10px;
+  background: $light-gray-color;
+  border-radius: $border-radius;
+}
+
+@mixin upcoming_and_outstanding_tasks__wrapper_webkit_scrollbar_thumb {
+  background-color: $white-color;
+  border-radius: $border-radius;
+}

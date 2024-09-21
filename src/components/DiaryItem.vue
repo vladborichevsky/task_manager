@@ -1,5 +1,8 @@
 <template>
-  <div :id="theDay" class="diary_item" :class="{ present_day_border: props.index == presentDay }">
+  <div 
+    :id="theDay" 
+    class="diary_item" 
+    :class="{ present_day_border: props.index == presentDay }">
 
     <div class="diary_item_wrapper">
 
@@ -10,20 +13,20 @@
         <div 
           class="diary_item_header-date"
           :class="{ present_day_text_col: props.index == presentDay }">
-            {{ dateString(props.index) }}
+            {{ dateString }}
         </div>
       </div>
 
       <hr>
 
       <div class="task">
-        <task-item
+        <task-item-home-page
           v-for="(item, index) in arrOfTasks"
           :key="index"
           :task="item"
           :theDay="theDay"
           :id="index"
-          :dateString="dateString(props.index)"/>
+          :dateString="dateString"/>
             
       </div>
 
@@ -31,7 +34,7 @@
         <hr>
 
         <div 
-          @click="addNewTask"
+          @click="useAddNewTask(store, props.theDay, props.index)"
           class="add_new_task">
             <img src="/icons/icon-plus.png" alt="add_new_task">
         </div>
@@ -44,15 +47,17 @@
   import { useStore } from 'vuex' 
   import { computed } from 'vue' 
   import Swal from 'sweetalert2'
-  import TaskItem from "@/components/TaskItem.vue"
+  import TaskItemHomePage from "@/components/TaskItemHomePage.vue"
 
   // слушатель событий нажатия клавиш 1-7
-  import { numberKeypressEventListener }  from '../hooks/numberKeypressEventListener.js'
-
-  import { dateString } from '../hooks/getDateString.js'
+  import { useNumKpressEventListener }  from '../hooks/useNumKpressEventListener.js'
+  // функция получения актуальных дат на дни недели
+  import { useGetDateString } from '../hooks/useGetDateString.js'
+  // функция добавления новой задачи
+  import { useAddNewTask } from '../hooks/useAddNewTask.js'
 
   components: { 
-    TaskItem
+    TaskItemHomePage
   }
 
   const props = defineProps({ 
@@ -72,64 +77,32 @@
 
   const store = useStore() 
 
+  const dateString = useGetDateString(props.index)
+
   const arrOfTasks = computed( () => store.state.objOfTasks[props.theDay])
+  const upcomingTasks = computed( () => store.state.objOfTasks.upcomingTasks)
   const pushToArrOfTasks = (item) => store.commit('pushToArrOfTasks', item)
+  const delElArrOfTasks = (item) => store.commit('delElArrOfTasks', item)
 
-  const addNewTask = async () => {
-    const { value: formValues } = await Swal.fire({
-      stopKeydownPropagation: true,
-      confirmButtonText: 'ADD',
-      title: `New task for ${props.theDay}`,
-      showCancelButton: true,
-      cancelButtonColor: '#f10606',
-      showCloseButton: true,
-      inputAutoTrim: true,
-      html: `
-        <input id="swal-input1" class="swal2-input" maxlength='60' placeholder="Task name" autofocus>
-        <input id="swal-input2" class="swal2-input" maxlength='200' placeholder="Description of the task">
-      `,
-      didOpen: () => {
-        
-        Swal.getPopup().addEventListener('keydown', (event) => {
-          if(event.code === 'Enter' && document.getElementById("swal-input1").value) {
-            Swal.clickConfirm()
-          }
-        })
-      },
-      preConfirm: () => {
-
-        return [
-          document.getElementById("swal-input1").value,
-          document.getElementById("swal-input2").value,
-        ];
-      }
-    })
-
-    if (formValues) {
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Task added!",
-        showConfirmButton: false,
-        timer: 2000
-      });
-
-      pushToArrOfTasks({'day': props.theDay, 'value': [formValues[0], formValues[1], dateString(props.index)]})
+  // проверяем будущие задачи из списка upcomingTasks. Если какая-то задача из этого списка стоит на дату одного из дней недели, то эта задача перенесётся на конкретный день и удалится из списка будущих задача upcomingTasks
+  upcomingTasks.value.forEach( item => {
+    if(dateString == item[2]) {
+      pushToArrOfTasks({'day': props.theDay, 'value': item})
+      delElArrOfTasks({'day': 'upcomingTasks', 'value': item})
     }
-  }
+  })
 
   // слушатель событий нажатия клавиш 1-7
-  numberKeypressEventListener(props.theDay, Swal, addNewTask)
-
+  useNumKpressEventListener(props.theDay, Swal, () => {useAddNewTask(store, props.theDay, props.index)})
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .diary_item {
     width: 170px;
     height: 400px;
-    background-color: var(--black-color);
-    border: 2px solid var(--light-gray-color);
-    border-radius: var(--border-radius);
+    background-color: $black-color;
+    border: 2px solid $light-gray-color;
+    border-radius: $border-radius;
     padding: 20px 10px;
   }
 
@@ -146,18 +119,18 @@
   .diary_item_header-day {
     font-weight: 600;
     font-size: 22px;
-    color: var(--blue-color);
+    color: $blue-color;
   }
 
   .diary_item_header-date {
     font-weight: 600;
     font-size: 18px;
-    color: var(--light-gray-color);
+    color: $light-gray-color;
   }
 
   hr {
     margin: 10px 0;
-    border: 1px solid var(--light-gray-color);
+    border: 1px solid $light-gray-color;
   }
 
   .task {
@@ -170,13 +143,13 @@
 
   .task::-webkit-scrollbar {
     width: 10px;
-    background: var(--light-gray-color);
-    border-radius: var(--border-radius);
+    background: $light-gray-color;
+    border-radius: $border-radius;
   }
 
   .task::-webkit-scrollbar-thumb {
-    background-color: var(--white-color); /* Цвет бегунка */
-    border-radius: var(--border-radius);
+    background-color: $white-color;
+    border-radius: $border-radius;
   }
 
   .add_new_task_wrapper {
@@ -197,7 +170,7 @@
 
   .add_new_task img {
     display: block;
-    width: 30px;
+    width: 40px;
   }
 
   .add_new_task img:hover {
@@ -206,11 +179,11 @@
   }
 
   .present_day_border {
-    border: 4px solid var(--white-color);
+    border: 4px solid $blue-color;
   }
 
   .present_day_text_col {
-    color: var(--white-color);
+    color: $white-color;
   }
 
 </style>

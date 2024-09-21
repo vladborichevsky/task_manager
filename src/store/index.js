@@ -11,10 +11,11 @@ export default createStore( {
       'friday': [],
       'saturday': [],
       'sunday': [],
-      'outstandingTasks': [] 
+      'outstandingTasks': [],
+      'upcomingTasks': []
     }
   }),
-
+  
   mutations: {
     // функция, которая помещает сохранённые данные из localStorage в наш VueX
     setValuesFromLocalStorage(state, newValue) {
@@ -56,19 +57,39 @@ export default createStore( {
       const present = new Date()
       const presentDate = +present.getDate()
       const presentMonth = +present.getMonth() + 1
+      const presentYear = +present.getFullYear()
       
       for (let key in state.objOfTasks) {
         state.objOfTasks[key].forEach(item => {
-          if(key == 'outstandingTasks') {
+          if(key == 'outstandingTasks' || key == 'upcomingTasks') {
             return false
           } else {
-            if(+item[2].split('.')[0] < presentDate && +item[2].split('.')[1] <= presentMonth) {
+
+            if(+item[2].split('.')[2] >= presentYear && +item[2].split('.')[1] > presentMonth) {
+              return false
+            } else if(+item[2].split('.')[1] <= presentMonth && +item[2].split('.')[0] < presentDate) {
               commit('pushToArrOfTasks', {'day': 'outstandingTasks', 'value': item})
               commit('delElArrOfTasks', {'day': key, 'value': item})
             }
           }
         })
       }
+    },
+
+    updateUpcomingTasks({state, commit}) {
+      let newArr = []
+
+      state.objOfTasks.upcomingTasks.forEach(item => {
+        newArr.push(item)
+      })
+
+      newArr.sort( (a, b) => +a[2].split('.')[0] - +b[2].split('.')[0])
+      newArr.sort( (a, b) => +a[2].split('.')[1] - +b[2].split('.')[1])
+      newArr.sort( (a, b) => +a[2].split('.')[2] - +b[2].split('.')[2])
+
+      commit('clearArrOfTasks', 'upcomingTasks')
+
+      newArr.forEach(item => commit('pushToArrOfTasks', {'day': 'upcomingTasks', 'value': item})) 
     }
 
   }

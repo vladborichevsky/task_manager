@@ -7,30 +7,38 @@
     <div class="outstanding_tasks__block">
       <div class="outstanding_tasks__wrapper">
 
-        <outstanding-task-item
-        v-for="(item, index) in outstandingTasks"
-        :task="item"
-        :id="index"
-        :key="index"/>
+        <item-from-the-task-list
+          v-for="(item, index) in outstandingTasks"
+          :task="item"
+          :id="index"
+          :key="index"
+          @click="goToTask(index)"/>
 
       </div>
     </div>
 
-    <btn-backward/>
+    <div class="outstanding_tasks__footer">
+      <standard-button
+        @click="backwardPage()"
+        :imgSrc="imgSrcButtons.backward"
+        :text="textButtons.backward"/>
+    </div>
+
   </div>
 </template>
 
 <script setup>
-  import { onMounted, computed } from 'vue'
-  
-  import OutstandingTaskItem from "@/components/OutstandingTaskItem.vue"
-  import BtnBackward from "@/components/UI/BtnBackward.vue"
+  import ItemFromTheTaskList from "@/components/ItemFromTheTaskList.vue"
 
+  import { computed } from 'vue'
   import { useRouter } from 'vue-router'
   import { useStore } from 'vuex'
 
+  // слушатель события нажатия клавиши Backspace 
+  import { useBackspaceKpressEventListener }  from '../hooks/useBackspaceKpressEventListener.js'
+
   components: {
-    OutstandingTaskItem, BtnBackward
+    ItemFromTheTaskList
   }
 
   const router = useRouter()
@@ -38,49 +46,55 @@
 
   const outstandingTasks = computed( () => store.state.objOfTasks.outstandingTasks)
 
-  onMounted( () => {
-    if(outstandingTasks.value.length == 0) {
-      router.push('/')
-    }
-  })
+  // если список просроченных задач пуст, то router редиректит пользователя на домашнюю странцу. По сути эта функция нужна, если пользователь удаляет последнюю просроченную задачу
+  if(outstandingTasks.value.length == 0) {
+    router.push('/')
+  }
+
+  const textButtons = {
+    backward: "backward"
+  }
+
+  const imgSrcButtons = {
+    backward: "/icons/icon-back.png"
+  }
+
+  const goToTask = (id) => {
+    router.push(`/task/outstandingTasks_${id + 1}`)
+  }
+
+  const backwardPage = () => {
+    router.go(-1)
+  }
+
+  // слушатель события нажатия клавиши Backspace 
+  useBackspaceKpressEventListener(router, '/')
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .outstanding_tasks__header {
-    text-align: center;
-    color: var(--gray-color);
-    margin-bottom: 25px;
-    font-size: 30px;
-    font-weight: 600;
+    @include upcoming_and_outstanding_tasks__header
   }
 
   .outstanding_tasks__block {
-    width: 750px;
-    height: 450px;
-    background-color: var(--black-color);
-    border-radius: var(--border-radius);
-    padding: 20px 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
+    @include upcoming_and_outstanding_tasks__block
   }
 
   .outstanding_tasks__wrapper {
-    overflow-y: auto;
-    height: 440px;
+    @include upcoming_and_outstanding_tasks__wrapper
   }
 
   .outstanding_tasks__wrapper::-webkit-scrollbar {
-    width: 10px;
-    background: var(--light-gray-color);
-    border-radius: var(--border-radius);
+    @include upcoming_and_outstanding_tasks__wrapper_webkit_scrollbar
   }
 
   .outstanding_tasks__wrapper::-webkit-scrollbar-thumb {
-    background-color: var(--white-color); /* Цвет бегунка */
-    border-radius: var(--border-radius);
+    @include upcoming_and_outstanding_tasks__wrapper_webkit_scrollbar_thumb
   }
 
+  .outstanding_tasks__footer {
+    display: flex;
+    justify-content: center;
+  }
 </style>

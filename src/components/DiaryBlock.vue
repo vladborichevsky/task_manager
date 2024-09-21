@@ -21,7 +21,7 @@
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .diary_block {
     width: 100%;
     display: flex;
