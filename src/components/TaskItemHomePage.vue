@@ -144,9 +144,9 @@
     border-radius: $border-radius;
     border: 1px solid $gray-color;
     margin: 5px 0;
-  }
 
-  .task_item:hover {
-    border: 1px solid $blue-color;
+    &:hover {
+      border: 1px solid $blue-color;
+    }
   }
 </style>

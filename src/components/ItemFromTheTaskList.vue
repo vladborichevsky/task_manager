@@ -41,26 +41,26 @@
     margin: 5px 0;
     display: flex;
     justify-content: space-between;
-  }
 
-  .item_from_the_task_list_name {
-    cursor: pointer;
-    width: 550px;
-    background-color: $gray-color;
-    border-radius: $border-radius;
-    border: 1px solid $gray-color;
-    font-size: 22px;
-    padding: 10px 15px;
-  }
+    &_name {
+      cursor: pointer;
+      width: 550px;
+      background-color: $gray-color;
+      border-radius: $border-radius;
+      border: 1px solid $gray-color;
+      font-size: 22px;
+      padding: 10px 15px;
 
-  .item_from_the_task_list_name:hover {
-    border: 1px solid $blue-color;
-  }
+      &:hover {
+        border: 1px solid $blue-color;
+      }
+    }
 
-  .item_from_the_task_list_date {
-    padding: 10px 15px;
-    font-size: 22px;
-    font-weight: 600;
-    color: $blue-color;
+    &_date {
+      padding: 10px 15px;
+      font-size: 22px;
+      font-weight: 600;
+      color: $blue-color;
+    }
   }
 </style>

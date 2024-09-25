@@ -74,20 +74,20 @@
     border-radius: $border-radius;
     font-size: 18px;
     font-weight: 600;
-  }
 
-  .btn_bottom_block:hover {
-    border: 2px solid $white-color;
-  }
+    &:hover {
+      border: 2px solid $white-color;
+    }
 
-  .btn_bottom_block_disabled {
-    cursor: not-allowed;
-    background-color: $light-gray-color;
-    border: 2px solid $light-gray-color;
-    padding: 10px 15px;
-    border-radius: $border-radius;
-    font-size: 18px;
-    font-weight: 600;
+    &_disabled {
+      cursor: not-allowed;
+      background-color: $light-gray-color;
+      border: 2px solid $light-gray-color;
+      padding: 10px 15px;
+      border-radius: $border-radius;
+      font-size: 18px;
+      font-weight: 600;
+    }
   }
 
   .outstanding_btn_bcg_color {

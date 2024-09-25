@@ -104,28 +104,28 @@
     border: 2px solid $light-gray-color;
     border-radius: $border-radius;
     padding: 20px 10px;
-  }
 
-  .diary_item_wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
+    &_wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
 
-  .diary_item_header {
-    text-align: center;
-  }
+    &_header {
+      text-align: center;
+    }
 
-  .diary_item_header-day {
-    font-weight: 600;
-    font-size: 22px;
-    color: $blue-color;
-  }
+    &_header-day {
+      font-weight: 600;
+      font-size: 22px;
+      color: $blue-color;
+    }
 
-  .diary_item_header-date {
-    font-weight: 600;
-    font-size: 18px;
-    color: $light-gray-color;
+    &_header-date {
+      font-weight: 600;
+      font-size: 18px;
+      color: $light-gray-color;
+    }
   }
 
   hr {
@@ -139,17 +139,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
 
-  .task::-webkit-scrollbar {
-    width: 10px;
-    background: $light-gray-color;
-    border-radius: $border-radius;
-  }
+    &::-webkit-scrollbar {
+      width: 10px;
+      background: $light-gray-color;
+      border-radius: $border-radius;
+    }
 
-  .task::-webkit-scrollbar-thumb {
-    background-color: $white-color;
-    border-radius: $border-radius;
+    &::-webkit-scrollbar-thumb {
+      background-color: $white-color;
+      border-radius: $border-radius;
+    }
   }
 
   .add_new_task_wrapper {
@@ -166,16 +166,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
 
-  .add_new_task img {
-    display: block;
-    width: 40px;
-  }
+    & img {
+      display: block;
+      width: 40px;
 
-  .add_new_task img:hover {
-    transition: all 0.5s;
-    transform: rotate(0.5turn);
+      &:hover {
+        transition: all 0.5s;
+        transform: rotate(0.5turn);
+      }
+    }
   }
 
   .present_day_border {
