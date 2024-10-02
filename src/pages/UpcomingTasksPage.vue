@@ -45,10 +45,6 @@
 // функция добавления новой долгосрочной задачи 
   import { useAddNewUpcomingTask }  from '../hooks/useAddNewUpcomingTask.js'
   
-  components: {
-    ItemFromTheTaskList
-  }
-
   const router = useRouter()
   const store = useStore() 
 

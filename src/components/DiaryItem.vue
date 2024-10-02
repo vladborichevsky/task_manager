@@ -56,10 +56,6 @@
   // функция добавления новой задачи
   import { useAddNewTask } from '../hooks/useAddNewTask.js'
 
-  components: { 
-    TaskItemHomePage
-  }
-
   const props = defineProps({ 
       theDay: String,
       index: Number

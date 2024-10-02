@@ -25,10 +25,6 @@
   import { computed } from 'vue' 
   import { useRouter } from 'vue-router'
 
-  components: {
-    BtnBottomBlock
-  }
-
   const buttonNames = {
     'outstanding': 'outstanding',
     'upcoming': 'upcoming'

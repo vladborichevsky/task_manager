@@ -13,12 +13,7 @@
 <script setup>
   import DiaryItem from "@/components/DiaryItem.vue"
 
-  components: {
-    DiaryItem
-  }
-
   const daysOfTheWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
-
 </script>
 
 <style lang="scss" scoped>

@@ -37,10 +37,6 @@
   // слушатель события нажатия клавиши Backspace 
   import { useBackspaceKpressEventListener }  from '../hooks/useBackspaceKpressEventListener.js'
 
-  components: {
-    ItemFromTheTaskList
-  }
-
   const router = useRouter()
   const store = useStore() 
 

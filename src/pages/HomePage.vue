@@ -17,10 +17,6 @@
   import DiaryBlock from "@/components/DiaryBlock.vue"
   import BottomBlock from "@/components/BottomBlock.vue"
 
-  components: {
-    DiaryBlock, BottomBlock
-  }
-
   const store = useStore() 
 
   // проверяем, что если в localStorage есть объект objOfTasks, то данные из него помещаем в наш VueX
