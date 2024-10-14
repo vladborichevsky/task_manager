@@ -3,7 +3,7 @@
     draggable="true"
     ref="dragg"
     @dragstart.prevent="ondragstart"
-    @click="$router.push(`/task/${props.theDay}_${props.id + 1}`)"
+    @click="$router.push(`/task/${theDay}_${id + 1}`)"
     class="task_item">
       {{ taskName }}
   </div>

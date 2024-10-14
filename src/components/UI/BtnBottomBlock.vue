@@ -1,9 +1,9 @@
 <template>
   <div 
-    v-if="props.buttonName == 'outstanding'"
+    v-if="buttonName == 'outstanding'"
     class="btn_bottom_block_wrapper">
       <button
-        v-if="props.mainArray?.length == 0"
+        v-if="mainArray?.length == 0"
         disabled 
         class="btn_bottom_block_disabled"
         title="There are no outstanding tasks">
@@ -14,31 +14,31 @@
         v-else
         @click="outstanding()" 
         class="btn_bottom_block outstanding_btn_bcg_color"
-        :class="{ empty: props.mainArray?.length == 0 }">
+        :class="{ empty: mainArray?.length == 0 }">
           <slot></slot>
       </button>
     
       <div 
-        v-show="props.mainArray?.length > 0"
+        v-show="mainArray?.length > 0"
         class="number_of_tasks">
-          {{ props.mainArray?.length }}
+          {{ mainArray?.length }}
       </div>
   </div>
 
   <div 
-    v-if="props.buttonName == 'upcoming'"
+    v-if="buttonName == 'upcoming'"
     class="btn_bottom_block_wrapper">
       <button
         @click="upcoming()" 
         class="btn_bottom_block upcoming_btn_bcg_color"
-        :class="{ empty: props.mainArray?.length == 0 }">
+        :class="{ empty: mainArray?.length == 0 }">
           <slot></slot>
       </button>
   
       <div 
-        v-show="props.mainArray?.length > 0"
+        v-show="mainArray?.length > 0"
         class="number_of_tasks">
-          {{ props.mainArray?.length }}
+          {{ mainArray?.length }}
       </div>
   </div>
 </template>

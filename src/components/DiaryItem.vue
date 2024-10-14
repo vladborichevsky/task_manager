@@ -2,7 +2,7 @@
   <div 
     :id="theDay" 
     class="diary_item" 
-    :class="{ present_day_border: props.index == presentDay }">
+    :class="{ present_day_border: index == presentDay }">
 
     <div class="diary_item_wrapper">
 
@@ -12,7 +12,7 @@
         </div>
         <div 
           class="diary_item_header-date"
-          :class="{ present_day_text_col: props.index == presentDay }">
+          :class="{ present_day_text_col: index == presentDay }">
             {{ dateString }}
         </div>
       </div>
@@ -34,7 +34,7 @@
         <hr>
 
         <div 
-          @click="useAddNewTask(store, props.theDay, props.index)"
+          @click="useAddNewTask(store, theDay, index)"
           class="add_new_task">
             <img src="/icons/icon-plus.png" alt="add_new_task">
         </div>
