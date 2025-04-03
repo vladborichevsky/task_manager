@@ -10,7 +10,7 @@
 
 
 <script setup>
-  import { onMounted } from 'vue';
+  import { onMounted } from 'vue'
 
   import { useStore } from 'vuex' 
   
