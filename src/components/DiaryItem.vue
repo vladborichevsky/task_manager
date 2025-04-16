@@ -94,7 +94,7 @@
 
 <style lang="scss" scoped>
   .diary_item {
-    width: 170px;
+    width: 165px;
     height: 400px;
     background-color: $black-color;
     border: 2px solid $light-gray-color;
@@ -131,8 +131,8 @@
 
   .task {
     overflow-y: auto;
+    overflow-x: hidden;
     height: 280px;
-    display: flex;
     flex-direction: column;
     align-items: center;
 
@@ -182,4 +182,31 @@
     color: $white-color;
   }
 
+  @media (max-width: 500px) {
+    .swal-input1 {
+      width: 50px;
+    }
+  }
+
+  @media (max-width: 410px) {
+    .diary_item {
+      width: 135px;
+      height: 330px;
+
+      &_header-day {
+        font-size: 20px;
+      }
+    }
+
+    .task {
+      overflow-y: auto;
+      height: 205px;
+    }
+  }
+
+  @media (max-width: 350px) {
+    .diary_item {
+      width: 125px;
+    }
+  }
 </style>

@@ -23,11 +23,7 @@
   const emit = defineEmits(['click'])
 
   const taskName = computed( ()=> {
-    if(props.task[0].length > 45) {
-      return props.task[0].slice(0, 45) + '...'
-    } else {
-      return props.task[0]
-    }
+    return props.task[0]
   }) 
 
   const click = () => {
@@ -50,6 +46,9 @@
       border: 1px solid $gray-color;
       font-size: 22px;
       padding: 10px 15px;
+      white-space: nowrap; 
+      overflow: hidden; 
+      text-overflow: ellipsis;
 
       &:hover {
         border: 1px solid $blue-color;
@@ -61,6 +60,29 @@
       font-size: 22px;
       font-weight: 600;
       color: $blue-color;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .item_from_the_task_list {
+      width: 550px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .item_from_the_task_list {
+      width: 450px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .item_from_the_task_list {
+      width: 80vw;
+
+      &_date {
+        padding: 15px 5px;
+        font-size: 16px;
+      }
     }
   }
 </style>

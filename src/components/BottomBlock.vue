@@ -5,14 +5,14 @@
       :buttonName="buttonNames.outstanding"
       :mainArray="outstandingTasks"
       @outstanding="goToOutstandingTasksPage()">
-        <p>Outstanding tasks</p>
+        <p>Outstanding</p>
     </btn-bottom-block>
 
     <btn-bottom-block
       :buttonName="buttonNames.upcoming"
       :mainArray="upcomingTasks"
       @upcoming="goToUpcomingTasksPage()">
-        <p>Upcoming tasks</p>
+        <p>Upcoming</p>
     </btn-bottom-block>
 
   </div>

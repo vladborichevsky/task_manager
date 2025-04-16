@@ -27,6 +27,7 @@
   </div>
 </template>
 
+
 <script setup>
   import ItemFromTheTaskList from "@/components/ItemFromTheTaskList.vue"
 
@@ -65,8 +66,8 @@
 
   // слушатель события нажатия клавиши Backspace 
   useBackspaceKpressEventListener(router, '/')
-
 </script>
+
 
 <style lang="scss" scoped>
   .outstanding_tasks__header {

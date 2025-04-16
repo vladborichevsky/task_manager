@@ -167,6 +167,7 @@
   .task_window {
     width: 600px;
     height: 350px;
+    margin: 0 auto;
     background-color: $black-color;
     border: 2px solid $light-gray-color;
     border-radius: $border-radius;
@@ -177,6 +178,9 @@
       font-size: 24px;
       font-weight: 600;
       color: $blue-color;
+      white-space: nowrap; 
+      overflow: hidden; 
+      text-overflow: ellipsis;
     }
 
     &__descr {
@@ -205,6 +209,31 @@
   .task_footer {
     display: flex;
     justify-content: space-between;
+    margin: 0 auto;
+  }
+
+
+  @media (max-width: 750px) {
+    .task_window {
+      width: 500px;
+      height: 300px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .task_window {
+      width: 400px;
+    }
+
+    .task_header {
+      font-size: 25px;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .task_window, .task_footer {
+      width: 250px;
+    }
   }
 </style>
 

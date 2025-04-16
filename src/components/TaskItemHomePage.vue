@@ -144,9 +144,26 @@
     border-radius: $border-radius;
     border: 1px solid $gray-color;
     margin: 5px 0;
+    font-weight: 300;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
 
     &:hover {
       border: 1px solid $blue-color;
+    }
+  }
+
+  @media (max-width: 410px) {
+    .task_item {
+      width: 115px;
+      padding: 8px 5px;
+    }
+  }
+
+  @media (max-width: 350px) {
+    .task_item {
+      width: 105px;
     }
   }
 </style>

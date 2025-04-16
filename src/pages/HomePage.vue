@@ -2,6 +2,10 @@
   <div class="container">
     <h1>{{ headerTitle }}</h1>
 
+    <div class="swipe">
+      <img src="/icons/swipe-icon.png" alt="swipe" class="swipe-icon">
+    </div>
+    
     <diary-block/>
 
     <bottom-block/>
@@ -38,19 +42,41 @@
 </script>
 
 
-
-
 <style lang="scss" scoped>
   .container {
     width: 1400px;
+    width: 95vw;
     height: 85vh;
   }
 
   h1 {
     text-align: center;
     color: $gray-color;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     font-size: 36px;
+  }
+
+  .swipe {
+    margin: 0 auto;
+    justify-content: center;
+    margin: 10px 0;
+    display: none;
+  }
+
+  .swipe-icon {
+    width: 40px;
+  }
+
+  @media (max-width: 1450px) {
+    .swipe {
+      display: flex;
+    }
+  }
+
+  @media (max-width: 410px) {
+    .swipe-icon {
+      width: 30px;
+    }
   }
 </style>
 

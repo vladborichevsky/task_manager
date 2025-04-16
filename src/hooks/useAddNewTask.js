@@ -17,7 +17,7 @@ export async function useAddNewTask(store, theDay, index) {
     inputAutoTrim: true,
     html: `
       <input id="swal-input1" class="swal2-input" maxlength='60' placeholder="Task name" autofocus>
-      <input id="swal-input2" class="swal2-input" maxlength='200' placeholder="Description of the task">
+      <input id="swal-input2" class="swal2-input" maxlength='200' placeholder="Description">
     `,
     didOpen: () => {
       Swal.getPopup().addEventListener('keydown', (event) => {
